@@ -12,7 +12,7 @@
       <visual name="base">
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="nuro_arm/assets/meshes/base.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="assets/meshes/base.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="blue"/>
       </visual>
@@ -52,7 +52,7 @@
       <visual name="swivel">
         <origin xyz="0 0 0" rpy="0 0 3.14159"/>
         <geometry>
-          <mesh filename="nuro_arm/assets/meshes/swivel.stl" scale="0.001 0.001 0.001"/>
+fdxarm          <mesh filename="assets/meshes/swivel.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="blue"/>
       </visual>
@@ -73,7 +73,7 @@
       <visual name="upperarm_lower">
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="nuro_arm/assets/meshes/upperarm.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="assets/meshes/upperarm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="blue"/>
       </visual>
@@ -94,7 +94,7 @@
       <visual name="forearm">
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="nuro_arm/assets/meshes/forearm.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="assets/meshes/forearm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="blue"/>
       </visual>
@@ -115,7 +115,7 @@
       <visual name="wrist_metal_part">
         <origin xyz="0 0 0" rpy="0 0 3.14159"/>
         <geometry>
-          <mesh filename="nuro_arm/assets/meshes/wrist.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="assets/meshes/wrist.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="blue"/>
       </visual>
@@ -136,7 +136,7 @@
       <visual name="hand">
         <origin xyz="0 0 0" rpy="0 0 3.14159"/>
         <geometry>
-          <mesh filename="nuro_arm/assets/meshes/hand.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="assets/meshes/hand.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="black"/>
       </visual>
@@ -154,6 +154,7 @@
       </collision>
     </link>
 
+
     <link name="left_finger_base_link">
       <inertial>
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -163,7 +164,7 @@
       <visual name="left_finger_base">
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="nuro_arm/assets/meshes/finger_base.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="assets/meshes/finger_base.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="black"/>
       </visual>
@@ -184,7 +185,7 @@
       <visual name="right_finger_base">
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="nuro_arm/assets/meshes/finger_base.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="assets/meshes/finger_base.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="black"/>
       </visual>
@@ -205,7 +206,7 @@
       <visual name="left_finger_tip">
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="nuro_arm/assets/meshes/finger_tip.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="assets/meshes/finger_tip.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="black"/>
       </visual>
@@ -230,7 +231,7 @@
       <visual name="right_finger_tip">
         <origin xyz="0 0.0 0.0" rpy="0 0 3.14159"/>
         <geometry>
-          <mesh filename="nuro_arm/assets/meshes/finger_tip.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="assets/meshes/finger_tip.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="black"/>
       </visual>
@@ -261,7 +262,7 @@
                 <sphere radius="0.003"/>
               </geometry>
               <material name="red">
-                <color rgba="0.8 0.2 0.2 0.5"/>
+                <color rgba="0.8 0.2 0.2 0"/>
               </material>
         </visual>
         <inertial>
@@ -270,6 +271,20 @@
         </inertial>
     </link>
 
+    <link name="camera_link">
+      <visual name="camera">
+        <origin xyz="0 0 -0.05" rpy="3.1415 0 0"/>
+	<geometry>
+	  <box size="0.008 0.012 0.005"/>
+        </geometry>
+        <material name="pink"/>
+      </visual>
+      <inertial>
+            <mass value="0.001"/>
+            <inertia ixx="0.00001" ixy="0" ixz="0" iyy="0.00001" iyz="0" izz="0.00001"/>
+      </inertial>
+    </link>:
+    
     <joint name="world_joint" type="fixed">
         <parent link="world"/>
         <child link="base_link"/>
@@ -311,6 +326,7 @@
       <limit lower="-1.8" upper="2.0" velocity="2.0"/>
       <dynamics friction="0" damping="0.5"/>
     </joint>
+
 
     <joint name="wrist_rotation_joint" type="revolute">
       <origin xyz="0 0 0.0588" rpy="0 0 0"/>
@@ -367,6 +383,12 @@
         <parent link="hand_link"/>
         <child link="virtual_grasp_link"/>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.1"/>
+    </joint>
+
+    <joint name="camera_joint" type="fixed">
+      <parent link="hand_link"/>
+      <child link="camera_link"/>
+      <origin xyz="-0.025 0.0 0.05" rpy="0 0 0"/>
     </joint>
 
     <material name="black">

@@ -12,8 +12,8 @@ CALIBRATION_GRIDSHAPE = (9,7)
 ARUCO_DICT = cv2.aruco.Dictionary_get(cv2.aruco.DICT_4X4_50)
 ARUCO_PARAMS = cv2.aruco.DetectorParameters_create()
 
-URDF_DIR = os.path.join(os.path.dirname(nuro_arm.__file__),
-                        'assets/urdf')
+URDF_DIR = os.path.join(os.path.dirname(nuro_arm.__file__), 'assets/urdf')
+
 IMAGES_DIR = os.path.join(os.path.dirname(nuro_arm.__file__),
                         'images')
 XARM_CONFIG_FILE = os.path.join(os.path.dirname(nuro_arm.__file__),
