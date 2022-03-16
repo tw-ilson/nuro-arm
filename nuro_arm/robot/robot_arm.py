@@ -43,7 +43,7 @@ class RobotArm:
             names of the joints in the arm
         controller : BaseController
             Controller used to execute motion commands
-        _sim : PybulletSimulator
+        _sim : PybulletSimulator    
             Internal simulator of robot used to perform IK and collision
             detection
         mp : MotionPlanner

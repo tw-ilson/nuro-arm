@@ -93,6 +93,12 @@ class PybulletSimulator:
             making calls because there might be multiple clients running
         '''
         client = pb.connect(connection_mode)
+
+        pb.configureDebugVisualizer(pb.COV_ENABLE_GUI,0)
+        pb.configureDebugVisualizer(pb.COV_ENABLE_SEGMENTATION_MARK_PREVIEW,0)      
+        pb.configureDebugVisualizer(pb.COV_ENABLE_DEPTH_BUFFER_PREVIEW,0)           
+        pb.configureDebugVisualizer(pb.COV_ENABLE_RGB_BUFFER_PREVIEW,1)  
+
         pb.setPhysicsEngineParameter(numSubSteps=0,
                                      numSolverIterations=100,
                                      solverResidualThreshold=1e-7,

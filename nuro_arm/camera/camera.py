@@ -12,7 +12,7 @@ from nuro_arm import constants
 
 class Camera:
     def __init__(self,
-                 camera_type='real',
+                 camera_type='sim',
                  camera_id=None,
                  pose_mtx=None,
                  free_floating=True,
